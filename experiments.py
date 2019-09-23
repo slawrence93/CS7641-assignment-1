@@ -109,7 +109,7 @@ def run_neural_network_experiment():
 
 
 def run_boosting_experiment():
-    credit_default = pd.read_excel('default of credit card clients.xls', header=1, index_col=0)
+    credit_default = pd.read_excel('default_of_credit_card_clients.xls', header=1, index_col=0)
     credit_default.columns = map(str.lower, credit_default.columns)
     credit_default.rename(columns={'default payment next month': 'default_payment'}, inplace=True)
     feature_cols = credit_default.columns.values[:-1]
@@ -156,7 +156,7 @@ def run_boosting_experiment():
 
 
 def run_support_vector_machine_experiment():
-    credit_default = pd.read_excel('default of credit card clients.xls', header=1, index_col=0)
+    credit_default = pd.read_excel('default_of_credit_card_clients.xls', header=1, index_col=0)
     credit_default.columns = map(str.lower, credit_default.columns)
     credit_default.rename(columns={'default payment next month': 'default_payment'}, inplace=True)
     feature_cols = credit_default.columns.values[:-1]
@@ -222,7 +222,7 @@ def run_support_vector_machine_experiment():
 
 
 def run_k_nearest_neighbors_experiment():
-    credit_default = pd.read_excel('default of credit card clients.xls', header=1, index_col=0)
+    credit_default = pd.read_excel('default_of_credit_card_clients.xls', header=1, index_col=0)
     credit_default.columns = map(str.lower, credit_default.columns)
     credit_default.rename(columns={'default payment next month': 'default_payment'}, inplace=True)
     feature_cols = credit_default.columns.values[:-1]
