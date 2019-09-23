@@ -32,6 +32,11 @@ def run_decision_tree_experiment():
     plot_learning_curve_times(DecisionTreeClassifier(max_depth=5), X_credit_default, y_credit_default)
     plot_validation_curves("tree", X_credit_default, y_credit_default)
 
+    credit_default_tree_cf = DecisionTreeClassifier(max_depth=5)
+    credit_default_tree_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_tree_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
+
     pen_digits = pd.read_csv('pendigits.csv')
 
     feature_cols = pen_digits.columns.values[:-1]
@@ -48,6 +53,11 @@ def run_decision_tree_experiment():
     plot_learning_curve(DecisionTreeClassifier(max_depth=5), X_pen_digits, y_pen_digits)
     plot_learning_curve_times(DecisionTreeClassifier(max_depth=5), X_pen_digits, y_pen_digits)
     plot_validation_curves("tree", X_pen_digits, y_pen_digits)
+
+    pen_digits_tree_cf = DecisionTreeClassifier(max_depth=15)
+    pen_digits_tree_cf.fit(X_pen_digits, y_pen_digits)
+    y_predict = pen_digits_tree_cf.predict(X_pen_digits_test)
+    print("Accuracy:",metrics.accuracy_score(y_pen_digits_test, y_pred))
 
 
 def run_neural_network_experiment():
@@ -69,6 +79,11 @@ def run_neural_network_experiment():
     plot_learning_curve_times(MLPClassifier(), X_credit_default, y_credit_default)
     plot_validation_curves("neural network", X_credit_default, y_credit_default)
 
+    credit_default_nn_cf = MLPClassifier(hidden_layer_sizes=7, activation="logistic")
+    credit_default_nn_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_nn_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
+
     pen_digits = pd.read_csv('pendigits.csv')
 
     feature_cols = pen_digits.columns.values[:-1]
@@ -85,6 +100,11 @@ def run_neural_network_experiment():
     plot_learning_curve(MLPClassifier(), X_pen_digits, y_pen_digits)
     plot_learning_curve_times(MLPClassifier(), X_pen_digits, y_pen_digits)
     plot_validation_curves("neural network", X_pen_digits, y_pen_digits)
+
+    pen_digits_nn_cf = MLPClassifier()
+    pen_digits_nn_cf.fit(X_pen_digits, y_pen_digits)
+    y_pred = pen_digits_nn_cf.predict(X_pen_digits_test)
+    print("Accuracy:",metrics.accuracy_score(y_pen_digits_test, y_pred))
 
 
 def run_boosting_experiment():
@@ -106,6 +126,11 @@ def run_boosting_experiment():
     plot_learning_curve_times(AdaBoostClassifier(), X_credit_default, y_credit_default)
     plot_validation_curves("boosting", X_credit_default, y_credit_default)
 
+    credit_default_boosting_cf = AdaBoostClassifier(n_estimators=25)
+    credit_default_boosting_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_boosting_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
+
     pen_digits = pd.read_csv('pendigits.csv')
 
     feature_cols = pen_digits.columns.values[:-1]
@@ -122,6 +147,11 @@ def run_boosting_experiment():
     plot_learning_curve(AdaBoostClassifier(), X_pen_digits, y_pen_digits)
     plot_learning_curve_times(AdaBoostClassifier(), X_pen_digits, y_pen_digits)
     plot_validation_curves("boosting", X_pen_digits, y_pen_digits)
+
+    pen_digits_boosting_cf = AdaBoostClassifier()
+    pen_digits_boosting_cf.fit(X_pen_digits, y_pen_digits)
+    y_pred = pen_digits_boosting_cf.predict(X_pen_digits_test)
+    print("Accuracy:",metrics.accuracy_score(y_pen_digits_test, y_pred))
 
 
 def run_support_vector_machine_experiment():
@@ -147,6 +177,16 @@ def run_support_vector_machine_experiment():
     plot_learning_curve_times(SVC(kernel="rbf"), X_credit_default, y_credit_default)
     plot_validation_curves("svc", X_credit_default, y_credit_default)
 
+    credit_default_svm_linear_cf = SVC(kernel='linear')
+    credit_default_svm_linear_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_svm_linear_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
+
+    credit_default_svm_rbf_cf = SVC(kernel='rbf')
+    credit_default_svm_rbf_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_svm_rbf_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
+
     pen_digits = pd.read_csv('pendigits.csv')
 
     feature_cols = pen_digits.columns.values[:-1]
@@ -168,6 +208,17 @@ def run_support_vector_machine_experiment():
     plot_learning_curve_times(SVC(kernel="rbf"), X_pen_digits, y_pen_digits)
     plot_validation_curves("svc", X_pen_digits, y_pen_digits)
 
+    pen_digits_svm_linear_cf = SVC(kernel="linear")
+    pen_digits_svm_linear_cf.fit(X_pen_digits, y_pen_digits)
+    y_pred = pen_digits_svm_linear_cf.predict(X_pen_digits_test)
+    print("Accuracy:",metrics.accuracy_score(y_pen_digits_test, y_pred))
+    print(cross_val_score(SVC(kernel="linear"), X_pen_digits, y_pen_digits, cv=3))
+
+    pen_digits_svm_rbf_cf = SVC(kernel="rbf")
+    pen_digits_svm_rbf_cf.fit(X_pen_digits, y_pen_digits)
+    y_pred = pen_digits_svm_rbf_cf.predict(X_pen_digits_test)
+    print("Accuracy:",metrics.accuracy_score(y_pen_digits_test, y_pred))
+
 
 def run_k_nearest_neighbors_experiment():
     credit_default = pd.read_excel('default of credit card clients.xls', header=1, index_col=0)
@@ -187,6 +238,11 @@ def run_k_nearest_neighbors_experiment():
     plot_learning_curve(KNeighborsClassifier(), X_credit_default, y_credit_default)
     plot_learning_curve_times(KNeighborsClassifier(), X_credit_default, y_credit_default)
     plot_validation_curves("nearest neighbors", X_credit_default, y_credit_default)
+
+    credit_default_knn_cf = KNeighborsClassifier(n_neighbors=15)
+    credit_default_knn_cf.fit(X_credit_default, y_credit_default)
+    y_pred = credit_default_knn_cf.predict(X_credit_default_test)
+    print("Accuracy:",metrics.accuracy_score(y_credit_default_test, y_pred))
 
     pen_digits = pd.read_csv('pendigits.csv')
 
