@@ -11,6 +11,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.svm import SVC
+from sklearn import metrics
 
 
 def run_decision_tree_experiment():
