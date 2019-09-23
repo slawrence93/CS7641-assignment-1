@@ -9,7 +9,7 @@
 if you only want to run an experiment for one classifier pass the following arguments:
 
 `-t`: Decision Tree
-`nn`: Neural Network
-`svm`: Support Vector Machines
-`knn`: k-Nearest Neighbor
-`b`: Boosting
+`-nn`: Neural Network
+`-svm`: Support Vector Machines
+`-knn`: k-Nearest Neighbor
+`-b`: Boosting
